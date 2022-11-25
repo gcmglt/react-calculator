@@ -1,5 +1,6 @@
 import { ACTIONS } from "./App";
 
+// pulsanti operazioni, DEL e AC della calcolatrice
 const OperationButton = ({ dispatch, operation }) => {
   return (
     <button

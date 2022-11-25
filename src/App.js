@@ -1,8 +1,11 @@
 import { useReducer } from "react";
+
 import DigitButton from "./DigitButton";
 import OperationButton from "./OperationButton";
+
 import "./styles.css";
 
+// dichiarazione azioni possibili della calcolatrice
 export const ACTIONS = {
   ADD_DIGIT: "add-digit",
   CHOOSE_OPERATION: "choose-operation",
@@ -11,6 +14,7 @@ export const ACTIONS = {
   EVALUATE: "evaluate",
 };
 
+// gestione varie azioni della calcolatrice
 const reducer = (state, { type, payload }) => {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
@@ -96,6 +100,7 @@ const reducer = (state, { type, payload }) => {
   }
 };
 
+// gestione funzioni di calcolo
 const evaluate = ({ currentOperand, previousOperand, operation }) => {
   const previous = parseFloat(previousOperand);
   const current = parseFloat(currentOperand);
@@ -115,14 +120,13 @@ const evaluate = ({ currentOperand, previousOperand, operation }) => {
       computation = previous / current;
       break;
   }
-
   return computation.toString();
 };
 
+// formattazioni numeri interi
 const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: 0,
 });
-
 const formatOperand = (operand) => {
   if (operand == null) return;
   const [integer, decimal] = operand.split(".");
